@@ -1,5 +1,5 @@
 # Read Me
-#### Tải hai file node.h và SLL.h, copy vào thư mục chứa file cpp của bạn và thêm #include "SLL.h" vào phần header để sử dụng.
+#### Tải hai file node.h và SLL.h, copy vào thư mục chứa file cpp của bạn và thêm #include "SLL.h" vào phần header để sử dụng. Thay thế type trong node\<type> và SLL\<type> bằng kiểu dữ liệu mong muốn, dùng từ khóa using và #define để đơn giản hóa cú pháp và đặt tên phù hợp cho cấu trúc dữ liệu và thao tác. Xem thêm ví dụ bên dưới.  
 ## Template class node
 ```cpp
 template <class type>
