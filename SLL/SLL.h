@@ -19,6 +19,7 @@ public:
 	node<type> *popTail();
 	node<type> *findNode(type); //may need to overload operator== for type
 	node<type> *popNode(type);
+	node<type> *popNode(node<type> *);
 	void deleteHead();
 	void deleteTail();
 	void deleteNode(type);
@@ -144,6 +145,30 @@ template<class type>
 node<type>* SLL<type>::popNode(type info)
 {
 	node<type> *p = findNode(info);
+	if (p == NULL)
+		return NULL;
+	if (p == this->head)
+		return this->popHead();
+	else if (p == this->tail)
+		return this->popTail();
+	else
+	{
+		node<type> q = this->head;
+		while (q->next != p)
+		{
+			q = q->next;
+		}
+		q->next = p->next;
+		p->isolate();
+		return p;
+	}
+}
+
+template<class type>
+inline node<type>* SLL<type>::popNode(node<type>* p)
+{
+	if (p == NULL)
+		return NULL;
 	if (p == this->head)
 		return this->popHead();
 	else if (p == this->tail)
