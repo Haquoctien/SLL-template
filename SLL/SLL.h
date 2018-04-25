@@ -146,7 +146,7 @@ node<type>* SLL<type>::popNode(type info)
 	node<type> *p = findNode(info);
 	if (p == this->head)
 		return this->popHead();
-	else if (p == this->addTail)
+	else if (p == this->tail)
 		return this->popTail();
 	else
 	{
