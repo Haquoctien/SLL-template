@@ -31,6 +31,9 @@ int main(void)
 ```
 
 Output khi chạy chương trình là
+
 7 6 1
+
 7
+
 Press any key to continue...
