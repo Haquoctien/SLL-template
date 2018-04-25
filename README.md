@@ -1,7 +1,7 @@
 # Read Me
 
 ### Ví dụ về dùng template node\<type> và SLL\<type>
-Đoạn code dưới đây dùng hai template trên để cài đặt stack chứa kiểu int, với hai thao tác là push và pop
+Đoạn code dưới đây dùng hai template trên để cài đặt stack chứa node chứa kiểu int, với hai thao tác là push và pop
 ```cpp
 #include "SLL.h"
 using namespace std;
@@ -31,9 +31,137 @@ int main(void)
 ```
 
 Output khi chạy chương trình là:
-
+```
 7 6 1
-
 7
-
 Press any key to continue...
+```
+
+Một ví dụ phức tạp hơn, dùng template để cài đặt cấu trúc dữ liệu là tokenList chứa node là class Token chứa tokenData (phần info của node) chứa hai string là token và type. Cài đặt hàm tokenize để chia nhỏ biểu thức nhập vào thành những phần tử nguyên vẹn như số, toán tử, hàm,... dùng cho việc tính biểu thức, chuyển biểu thức từ trung tố sang hậu số và ngược lại. 
+```cpp
+#include <iostream>
+#include <string>
+#include "SLL.h"
+using namespace std;
+
+// data structures
+class tokenData
+{
+public:
+	string token;
+	string type;
+	tokenData() {}
+	tokenData(string token, string type)
+	{
+		this->token = token;
+		this->type = type;
+	}
+	~tokenData() {}
+};
+
+using Token = node<tokenData>;
+using tokenList = SLL<tokenData>;
+#define push SLL<tokenData>::addTail
+
+// function prototypes
+void removeSpaces(string&);
+tokenList tokenize(string);
+#define isDigit isdigit
+bool isOperator(char);
+bool isLetter(char);
+bool isLeftParenthese(char);
+bool isRightParenthese(char);
+void output(tokenList);
+
+
+// definitions
+tokenList tokenize(string str)
+{
+	tokenList result;
+	removeSpaces(str);
+	str[str.length()] = '\0';
+	string numberBuffer = "";
+	string letterBuffer = "";
+	for (int i = 0; str[i];)
+	{
+		char c = str[i];
+		bool flag = isDigit(c);
+		while (flag)
+		{
+			numberBuffer += c;
+			c = str[++i];
+			if (!isDigit(c))
+			{
+				result.push(tokenData(numberBuffer, "number"));
+				numberBuffer.clear();
+				flag = false;
+			}
+		}
+		flag = isLetter(c);
+		while (flag)
+		{
+			letterBuffer += c;
+			c = str[++i];
+			if (!isLetter(c))
+			{
+				if (letterBuffer.compare("div") == 0)
+					result.push(tokenData(letterBuffer, "operator"));
+				result.push(tokenData(letterBuffer, "function"));
+				letterBuffer.clear();
+				flag = false;
+			}
+		}
+		if (isOperator(c))
+		{
+			string temp = "";
+			temp += c;
+			result.push(tokenData(temp, "operator"));
+			i++;
+		}
+		else if (isLeftParenthese(c))
+		{
+			string temp = "";
+			temp += c;
+			result.push(tokenData(temp, "rightParenthese"));
+			i++;
+		}
+		else if (isRightParenthese(c))
+		{
+			string temp = "";
+			temp += c;
+			result.push(tokenData(temp, "leftParenthese"));
+			i++;
+		}
+	}
+	return result;
+}
+
+void removeSpaces(string &str)
+{
+	int count = 0;
+	for (int i = 0; str[i]; i++)
+		if (str[i] != ' ')
+			str[count++] = str[i];
+	str[count] = '\0';
+}
+bool isOperator(char c)
+{
+	string operators = "+-*/^";
+	 if (operators.find(c) != -1)
+		 return true;
+	 return false;
+}
+bool isLetter(char c)
+{
+	return isalpha(c);
+}
+bool isLeftParenthese(char c)
+{
+	return (c == '(');
+}
+bool isRightParenthese(char c)
+{
+	return (c == ')');
+}
+```
+
