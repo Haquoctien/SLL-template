@@ -7,7 +7,7 @@ public:
 	type info;
 	node *next;
 	node();
-	node(type &);
+	node(type);
 	~node();
 	void isolate();
 };
@@ -29,7 +29,7 @@ node<type>::node()
 }
 
 template<class type>
-node<type>::node(type &info)
+node<type>::node(type info)
 {
 	this->info = info;
 	this->next = NULL;
