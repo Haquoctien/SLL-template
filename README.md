@@ -1,5 +1,46 @@
 # Read Me
-
+## Template class node
+```cpp
+template <class type>
+class node
+{
+public:
+	type info; // trường thông tin
+	node *next; // con trỏ next
+	node();
+	node(type); // tạo node từ type, cần copy constructor cho type nếu type dùng bộ nhớ động
+		// hay chỉnh sửa để method dùng tham biến
+	~node();
+	void isolate(); // ngắt next của node ra, next = NULL
+};
+```
+## Template class SLL
+```cpp
+template <class type>
+class SLL
+{
+public:
+	node<type> *head, *tail;
+	unsigned length;
+	SLL();
+	~SLL();
+	bool isEmpty(); // kiểm tra rỗng
+	void addHead(node<type> *);
+	void addHead(type); // cần copy constructor cho type nếu type dùng bộ nhớ động, hay chỉnh sửa để method dùng tham biến
+	void addTail(node<type> *);
+	void addTail(type);// cần copy constructor cho type nếu type dùng bộ nhớ động, hay chỉnh sửa để method dùng tham biến
+	node<type> *popHead();
+	node<type> *popTail();
+	node<type> *findNode(type); // có thể cần phải nạp chồng toán tử ==
+	node<type> *popNode(type);
+	void deleteHead();
+	void deleteTail();
+	void deleteNode(type);
+	void insertNodeAfter(node<type> *before, node<type> *after);
+	void insertNodeAfter(type, type);
+	// TODO: cài đặt các hàm nhập, xuất, xóa danh sách phù hợp với dữ liệu cần dùng như là hàm không thành viên
+};
+```
 ### Ví dụ về dùng template node\<type> và SLL\<type>
 Đoạn code dưới đây dùng hai template trên để cài đặt stack chứa node chứa kiểu int, với hai thao tác là push và pop
 ```cpp
