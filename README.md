@@ -8,9 +8,10 @@ public:
 	type info; // trường thông tin
 	node *next; // con trỏ next
 	node();
-	node(type &);
+	node(type); // tạo node từ type, cần copy constructor cho type nếu type dùng bộ nhớ động
+		// hay chỉnh sửa để method dùng tham biến
 	~node();
-	void isolate();
+	void isolate(); // ngắt next của node ra, next = NULL
 };
 ```
 ## Template class SLL
@@ -23,23 +24,21 @@ public:
 	unsigned length;
 	SLL();
 	~SLL();
-	bool isEmty();
+	bool isEmpty(); // kiểm tra rỗng
 	void addHead(node<type> *);
-	void addHead(type); // needs copy constructor for type if type
-						// is class contains pointer
+	void addHead(type); // cần copy constructor cho type nếu type dùng bộ nhớ động, hay chỉnh sửa để method dùng tham biến
 	void addTail(node<type> *);
-	void addTail(type);// needs copy constructor for type if type
-					   // is class contains pointer
+	void addTail(type);// cần copy constructor cho type nếu type dùng bộ nhớ động, hay chỉnh sửa để method dùng tham biến
 	node<type> *popHead();
 	node<type> *popTail();
-	node<type> *findNode(type); //may need to overload operator== for type
+	node<type> *findNode(type); // có thể cần phải nạp chồng toán tử ==
 	node<type> *popNode(type);
 	void deleteHead();
 	void deleteTail();
 	void deleteNode(type);
 	void insertNodeAfter(node<type> *before, node<type> *after);
 	void insertNodeAfter(type, type);
-	// TODO: implement input, ouput, destroy funcs as non-member with the wanted type
+	// TODO: cài đặt các hàm nhập, xuất, xóa danh sách phù hợp với dữ liệu cần dùng như là hàm không thành viên
 };
 ```
 ### Ví dụ về dùng template node\<type> và SLL\<type>
