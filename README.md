@@ -26,9 +26,11 @@ public:
 	~SLL();
 	bool isEmpty(); // kiểm tra rỗng
 	void addHead(node<type> *);
-	void addHead(type); // cần copy constructor cho type nếu type dùng bộ nhớ động, hay chỉnh sửa để method dùng tham biến
+	void addHead(type); // cần copy constructor cho type nếu type dùng bộ nhớ động
+			// hay chỉnh sửa để method dùng tham biến
 	void addTail(node<type> *);
-	void addTail(type);// cần copy constructor cho type nếu type dùng bộ nhớ động, hay chỉnh sửa để method dùng tham biến
+	void addTail(type);// cần copy constructor cho type nếu type dùng bộ nhớ động
+			// hay chỉnh sửa để method dùng tham biến
 	node<type> *popHead();
 	node<type> *popTail();
 	node<type> *findNode(type); // có thể cần phải nạp chồng toán tử ==
@@ -38,7 +40,8 @@ public:
 	void deleteNode(type);
 	void insertNodeAfter(node<type> *before, node<type> *after);
 	void insertNodeAfter(type, type);
-	// TODO: cài đặt các hàm nhập, xuất, xóa danh sách phù hợp với dữ liệu cần dùng như là hàm không thành viên
+	// TODO: cài đặt các hàm nhập, xuất, xóa danh sách phù hợp với dữ liệu cần dùng
+	// như là hàm không thành viên
 };
 ```
 ### Ví dụ về dùng template node\<type> và SLL\<type>
