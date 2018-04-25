@@ -1,4 +1,5 @@
 # Read Me
+#### Tải hai file node.h và SLL.h, copy vào thư mục chứa file cpp của bạn và thêm #include "SLL.h" vào phần header để sử dụng.
 ## Template class node
 ```cpp
 template <class type>
