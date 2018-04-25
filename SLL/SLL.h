@@ -102,7 +102,7 @@ node<type>* SLL<type>::popHead()
 		head = tail = NULL;
 		return p;
 	}
-	head++;
+	head = head->next;
 	p->isolate();
 	return p;
 }
