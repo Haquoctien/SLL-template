@@ -8,7 +8,7 @@ public:
 	unsigned length;
 	SLL();
 	~SLL();
-	bool isEmty();
+	bool isEmpty();
 	void addHead(node<type> *);
 	void addHead(type); // needs copy constructor for type if type
 						// is class contains pointer
@@ -44,7 +44,7 @@ SLL<type>::~SLL()
 }
 
 template<class type>
-bool SLL<type>::isEmty()
+bool SLL<type>::isEmpty()
 {
 	return (head == NULL);
 }
@@ -52,7 +52,7 @@ bool SLL<type>::isEmty()
 template<class type>
 void SLL<type>::addHead(node<type>* p)
 {
-	if (this->isEmty())
+	if (this->isEmpty())
 		head = tail = p;
 	else
 	{
@@ -103,7 +103,8 @@ node<type>* SLL<type>::popHead()
 		return p;
 	}
 	head++;
-	return p->isolate();
+	p->isolate();
+	return p;
 }
 
 template<class type>
@@ -122,7 +123,8 @@ node<type>* SLL<type>::popTail()
 		q = q->next;
 	q->next = NULL;
 	this->tail = q;
-	return p->isolate();
+	p->isolate();
+	return p;
 }
 
 template<class type>
@@ -154,7 +156,8 @@ node<type>* SLL<type>::popNode(type info)
 			q = q->next;
 		}
 		q->next = p->next;
-		return p->isolate();
+		p->isolate();
+		return p;
 	}
 }
 
