@@ -36,6 +36,7 @@ public:
 	node<type> *popTail();
 	node<type> *findNode(type); // có thể cần phải nạp chồng toán tử ==
 	node<type> *popNode(type);
+	node<type> *popNode(node<type> *);
 	void deleteHead();
 	void deleteTail();
 	void deleteNode(type);
