@@ -74,7 +74,7 @@ void SLL<type>::addHead(type info)
 template<class type>
 void SLL<type>::addTail(node<type>* p)
 {
-	if (this->isEmty())
+	if (this->isEmpty())
 		head = tail = p;
 	else
 	{
